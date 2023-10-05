@@ -18,13 +18,26 @@ namespace dotnetmicroserviceone.Controllers
        }
         public IEnumerable<Customer> Get()
         {
-            return _context.Customer();
+            return _context.Customers;
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Get(int id)
         {
-            return View("Error!");
+           var Customer = _context.Customers.Find(id);
+           if(Customer == null){
+                return NotFound();
+            return Ok(Customer);
+           }
         }
+
+         public IActionResult Get(int id)
+        {
+           var Customer = _context.Customers.Find(id);
+           if(Customer == null){
+                return NotFound();
+            return Ok(Customer);
+           }
+        }
+
     }
 }
