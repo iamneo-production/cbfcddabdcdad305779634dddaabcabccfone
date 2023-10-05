@@ -30,13 +30,15 @@ namespace dotnetmicroserviceone.Controllers
            }
         }
 
-         public IActionResult Get(int id)
+         public IActionResult Post([FromBody]Customer customer)
         {
-           var Customer = _context.Customers.Find(id);
-           if(Customer == null){
-                return NotFound();
-            return Ok(Customer);
+           if(ModelState.isValid){
+                _context.Customers.Add(customer);
+                _context.SaveChanges();
+                return CreatedAtAction(nameof(Get),
+                new{id = customer.CustomerId},customer);
            }
+           return BadRequest(ModelState);
         }
 
     }
