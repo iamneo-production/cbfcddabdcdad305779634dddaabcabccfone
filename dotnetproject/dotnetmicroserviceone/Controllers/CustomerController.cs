@@ -11,13 +11,7 @@ namespace dotnetmicroserviceone.Controllers
     [Route("[controller]")]
     public class CustomerController : Controller
     {
-        private readonly ILogger<CustomerController> _logger;
-
-        public CustomerController(ILogger<CustomerController> logger)
-        {
-            _logger = logger;
-        }
-
+       []
         public IActionResult Index()
         {
             return View();
