@@ -8,13 +8,17 @@ using Microsoft.Extensions.Logging;
 
 namespace dotnetmicroserviceone.Controllers
 {
+    
     [Route("[controller]")]
     public class CustomerController : Controller
     {
-       []
-        public IActionResult Index()
+       private readonly CustomerDbContext _context;
+       public CustomerController(CustomerDbContext context){
+        this._context = context;
+       }
+        public IEnumerable<Customer> Get()
         {
-            return View();
+            return _context.Customer();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
